@@ -30,11 +30,13 @@ class Render {
 		});
 
 		do5.addEventListener('click', e => {
+			after5.classList.remove("active")
 			do5.classList.toggle("active")
 			this.filter(e);
 		});
 
 		after5.addEventListener('click', e => {
+			do5.classList.remove("active")
 			after5.classList.toggle("active")
 			this.filter(e);
 		});
@@ -1054,8 +1056,108 @@ class Render {
 		}
 
 
+		///// vse i vse cvet
+		else if (fbut.classList.contains("active") && kbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			this.renderCards(flowers)
+		}
+		//////////2 k i 2 cveta
+		else if (fbut.classList.contains("active") && kbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+			FlowBuk()
+			redWhite(FlowBukArr)
+			this.renderCards(redWhiteArr)
+		}
+		else if (fbut.classList.contains("active") && kbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+			FlowBuk()
+			redYellow(FlowBukArr)
+			this.renderCards(redYellowArr)
+		}
+		else if (fbut.classList.contains("active") && kbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			FlowBuk()
+			whiteYellow(FlowBukArr)
+			this.renderCards(whiteYellowArr)
+		}
 
+		else if (fbut.classList.contains("active") && kbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+			FlowBuk()
+			redWhite(FlowBukArr)
+			this.renderCards(redWhiteArr)
+		}
+		else if (fbut.classList.contains("active") && kbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+			FlowBuk()
+			redYellow(FlowBukArr)
+			this.renderCards(redYellowArr)
+		}
+		else if (fbut.classList.contains("active") && kbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			FlowBuk()
+			whiteYellow(FlowBukArr)
+			this.renderCards(whiteYellowArr)
+		}
 
+		//
+		else if (fbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+			FlowCarts()
+			redWhite(FlowCartsArr)
+			this.renderCards(redWhiteArr)
+		}
+		else if (fbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+			FlowCarts()
+			redYellow(FlowCartsArr)
+			this.renderCards(redYellowArr)
+		}
+		else if (fbut.classList.contains("active") && cbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			FlowCarts()
+			whiteYellow(FlowCartsArr)
+			this.renderCards(whiteYellowArr)
+		}
+
+		else if (fbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+			FlowCarts()
+			redWhite(FlowCartsArr)
+			this.renderCards(redWhiteArr)
+		}
+		else if (fbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+			FlowCarts()
+			redYellow(FlowCartsArr)
+			this.renderCards(redYellowArr)
+		}
+		else if (fbut.classList.contains("active") && cbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			FlowCarts()
+			whiteYellow(FlowCartsArr)
+			this.renderCards(whiteYellowArr)
+		}
+
+		//
+		else if (kbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+			BukCart()
+			redWhite(BukCartArr)
+			this.renderCards(redWhiteArr)
+		}
+		else if (kbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+			BukCart()
+			redYellow(BukCartArr)
+			this.renderCards(redYellowArr)
+		}
+		else if (kbut.classList.contains("active") && cbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			BukCart()
+			whiteYellow(BukCartArr)
+			this.renderCards(whiteYellowArr)
+		}
+
+		else if (kbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+			BukCart()
+			redWhite(BukCartArr)
+			this.renderCards(redWhiteArr)
+		}
+		else if (kbut.classList.contains("active") && cbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+			BukCart()
+			redYellow(BukCartArr)
+			this.renderCards(redYellowArr)
+		}
+		else if (kbut.classList.contains("active") && cbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			BukCart()
+			whiteYellow(BukCartArr)
+			this.renderCards(whiteYellowArr)
+		}
 
 
 		///vse i cvet
@@ -1131,6 +1233,63 @@ class Render {
 		}
 
 
+		//////1 k i 2 cveta
+
+		else if (fbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			this.renderCards(onlyFlowers)
+		}
+
+		else if (kbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			this.renderCards(onlyBuket)
+		}
+		else if (cbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+			this.renderCards(onlyCarts)
+		}
+
+		else if (fbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+
+			redWhite(onlyFlowers)
+			this.renderCards(redWhiteArr)
+		} else if (fbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+
+			redYellow(onlyFlowers)
+			this.renderCards(redYellowArr)
+		}
+		else if (fbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+
+			whiteYellow(onlyFlowers)
+			this.renderCards(whiteYellowArr)
+		}
+		else if (kbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+
+			redWhite(onlyBuket)
+			this.renderCards(redWhiteArr)
+		} else if (kbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+
+			redYellow(onlyBuket)
+			this.renderCards(redYellowArr)
+		}
+		else if (kbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+
+			whiteYellow(onlyBuket)
+			this.renderCards(whiteYellowArr)
+		}
+		else if (cbut.classList.contains("active") && red.classList.contains("active") && white.classList.contains("active")) {
+
+			redWhite(onlyCarts)
+			this.renderCards(redWhiteArr)
+		} else if (cbut.classList.contains("active") && red.classList.contains("active") && yellow.classList.contains("active")) {
+
+			redYellow(onlyCarts)
+			this.renderCards(redYellowArr)
+		}
+		else if (cbut.classList.contains("active") && white.classList.contains("active") && yellow.classList.contains("active")) {
+
+			whiteYellow(onlyCarts)
+			this.renderCards(whiteYellowArr)
+		}
+
+
 		////1 i cvet
 		else if (fbut.classList.contains("active") && red.classList.contains("active")) {
 
@@ -1196,6 +1355,7 @@ class Render {
 			BukCart()
 			this.renderCards(BukCartArr)
 		}
+
 
 
 
