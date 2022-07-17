@@ -1,7 +1,7 @@
 import flowers from "./flowers.js";
 
 const card = document.querySelector(".produkt-catalog");
-const cards = document.querySelectorAll(".catalog-card");
+
 const fbut = document.querySelector('.flow');
 const kbut = document.querySelector('.bucket');
 const cbut = document.querySelector('.carts');
@@ -11,10 +11,100 @@ const red = document.querySelector('.red');
 const white = document.querySelector('.white');
 const yellow = document.querySelector('.yellow');
 
+const sliders = document.querySelectorAll('input[type="range"]');
+const stepleft = document.querySelector('.stepleft');
+const stepright = document.querySelector('.stepright');
+const stepleft1 = document.querySelector('.stepleft1');
+const stepright1 = document.querySelector('.stepright1');
+
+const sortab = document.querySelector('.sortab');
+const sort12 = document.querySelector('.sort12');
+const sortba = document.querySelector('.sortba');
+const sort21 = document.querySelector('.sort21');
+const sbros = document.querySelector('.sbros');
+const searchValue = document.querySelector('input[type="search"]')
+const searchbtn = document.querySelector('.fas')
+
+
+/* localStorage.setItem('fbut', fbut.classList)
+localStorage.setItem('kbut', kbut)
+
+localStorage.getItem('fbut') */
+
+
+
+
+let cardsD = [];
+
+
+
 class Render {
 
 	constructor(flowers) {
 		this.flowers = flowers;
+
+		searchbtn.addEventListener('click', e => {
+
+			this.search(e);
+		});
+
+		searchValue.addEventListener('input', e => {
+
+			this.search(e);
+		});
+
+
+		sbros.addEventListener('click', e => {
+
+			this.sbros(e);
+		});
+
+		sortab.addEventListener('click', e => {
+
+			this.sort(e);
+		});
+
+		sort12.addEventListener('click', e => {
+
+			this.sort(e);
+		});
+
+		sortba.addEventListener('click', e => {
+
+			this.sort(e);
+		});
+
+		sort21.addEventListener('click', e => {
+
+			this.sort(e);
+		});
+
+
+
+
+		sliders[0].addEventListener('input', e => {
+
+			this.diapozon(e)
+		});
+
+		sliders[1].addEventListener('input', e => {
+
+			this.diapozon(e)
+		});
+		sliders[2].addEventListener('input', e => {
+
+			this.diapozon(e)
+		});
+
+		sliders[3].addEventListener('input', e => {
+
+			this.diapozon(e)
+		});
+
+
+
+
+
 		fbut.addEventListener('click', e => {
 
 			this.filter(e);
@@ -56,11 +146,17 @@ class Render {
 			this.filter(e);
 		});
 
+
+
 	}
+
+
+
 
 	renderCards(flowers) {
 		const newdiv = document.createElement("div")
 		newdiv.classList.add("ggd")
+		cardsD.length = 0
 		flowers.forEach(function (key, index) {
 			let cards = `<div class="catalog-card">
 		<div class="card-item">
@@ -92,8 +188,9 @@ class Render {
 	</div>`
 
 
-
 			newdiv.insertAdjacentHTML("afterbegin", cards);
+
+			cardsD.push(key)
 
 			return newdiv
 
@@ -101,13 +198,239 @@ class Render {
 
 		})
 
-
 		card.replaceChildren(newdiv);
+
+		const cart = document.querySelector(".items")
+		let a = 0;
+		for (let item of document.getElementsByClassName('catalog-card')) {
+
+			if (item.style.display !== 'none')
+				item.addEventListener("click", function () {
+					if (item.classList.contains("active")) {
+						item.classList.remove("active")
+						a--
+						cart.innerHTML = a
+					} else {
+						item.classList.add("active")
+						a++
+						cart.innerHTML = a
+
+					}
+					if (a > 10) {
+						alert("Извините, все слоты заполнены")
+						item.classList.remove("active")
+						a = 10
+					}
+				})
+
+		}
 
 	}
 
 
+
+
+	renderCardsD(flowers) {
+		const newdiv = document.createElement("div")
+		newdiv.classList.add("ggd")
+
+		flowers.forEach(function (key, index) {
+			let cards = `<div class="catalog-card">
+		<div class="card-item">
+			<div class="img-item">
+				<img class="img-buket" src="${key.img}" alt="image">
+			</div>
+			<div class="text-item">
+			${key.name}
+			</div>
+			<div class="much">
+				Количество:${key.much}
+			</div>
+			<div class="size">
+			Бутон ${key.but}
+			</div>
+			<div class="fcolor">
+				Цвет: ${key.color}
+			</div>
+			<div class="type">
+				Тип: ${key.type}
+			</div>
+			<div class="length">
+				Длина цветка: ${key.flength}
+			</div>
+			<div class="length">
+				Популярный: ${key.popular}
+			</div>
+		</div>
+	</div>`
+
+
+			newdiv.insertAdjacentHTML("afterbegin", cards);
+
+
+
+			return newdiv
+
+
+
+		})
+
+		card.replaceChildren(newdiv);
+
+		const cart = document.querySelector(".items")
+		let a = 0;
+
+		for (let item of document.getElementsByClassName('catalog-card')) {
+
+			if (item.style.display !== 'none')
+				item.addEventListener("click", function () {
+					if (item.classList.contains("active")) {
+						item.classList.remove("active")
+						a--
+						cart.innerHTML = a
+					} else {
+						item.classList.add("active")
+						a++
+						cart.innerHTML = a
+
+					}
+
+
+
+				})
+
+		}
+
+	}
+
+	search(e) {
+		if (e.target.classList.contains('fas')) {
+
+
+			const searchArr = cardsD.filter((key) => key.name.toLowerCase().includes(searchValue.value.toLowerCase()))
+			this.renderCardsD(searchArr)
+
+			if (searchArr.length === 0) {
+				alert("Извините,совпадений не найдено...Sorry...")
+				this.renderCardsD(cardsD)
+
+			}
+
+		}
+	}
+
+	sbros(e) {
+		if (e.target.classList.contains('sbros')) {
+			sortba.classList.remove("active")
+			sortab.classList.remove("active")
+			sort12.classList.remove("active")
+			sort21.classList.remove("active")
+			fbut.classList.remove("active")
+			kbut.classList.remove("active")
+			cbut.classList.remove("active")
+			do5.classList.remove("active")
+			after5.classList.remove("active")
+			red.classList.remove("active")
+			white.classList.remove("active")
+			yellow.classList.remove("active")
+			sliders[0].value = 0
+			sliders[1].value = 15
+			sliders[2].value = 10
+			sliders[3].value = 45
+			stepleft.innerHTML = 0
+			stepright.innerHTML = 15
+			stepright1.innerHTML = 45
+			stepleft1.innerHTML = 10
+			searchValue.value = ''
+			this.renderCards(flowers)
+		}
+	}
+
+	sort(e) {
+		if (e.target.classList.contains('sortab')) {
+			sortab.classList.toggle("active")
+			sortba.classList.remove("active")
+			const sortArr = cardsD.sort((a, b) => b.name > a.name ? 1 : -1)
+
+			this.renderCardsD(sortArr)
+
+		}
+
+		if (e.target.classList.contains('sort12')) {
+			sort12.classList.toggle("active")
+			sort21.classList.remove("active")
+			const sortArr = cardsD.sort((a, b) => b.much / 1 > a.much / 1 ? 1 : -1)
+
+			this.renderCardsD(sortArr)
+
+		}
+
+		if (e.target.classList.contains('sortba')) {
+			sortba.classList.toggle("active")
+			sortab.classList.remove("active")
+			const sortArr = cardsD.sort((a, b) => a.name > b.name ? 1 : -1)
+
+			this.renderCardsD(sortArr)
+
+		}
+		if (e.target.classList.contains('sort21')) {
+			sort21.classList.toggle("active")
+			sort12.classList.remove("active")
+			const sortArr = cardsD.sort((a, b) => a.much / 1 > b.much / 1 ? 1 : -1)
+
+			this.renderCardsD(sortArr)
+
+		}
+	}
+
+
+	diapozon() {
+		if (+sliders[1].value < +sliders[0].value) {
+			sliders[0].value = +sliders[1].value;
+		}
+
+		if (+sliders[0].value > +sliders[1].value) {
+			sliders[1].value = +sliders[0].value;
+		}
+
+		if (+sliders[3].value < +sliders[2].value) {
+			sliders[2].value = +sliders[3].value;
+		}
+
+		if (+sliders[2].value > +sliders[3].value) {
+			sliders[3].value = +sliders[2].value;
+		}
+
+
+		sliders.forEach((slider) => {
+			slider.addEventListener('change', () => {
+				stepleft.innerHTML = sliders[0].value;
+				stepright.innerHTML = sliders[1].value;
+
+				const diap = cardsD.filter((key) => sliders[0].value <= key.much / 1 && key.much / 1 <= sliders[1].value);
+
+
+				stepleft1.innerHTML = sliders[2].value;
+				stepright1.innerHTML = sliders[3].value;
+
+				const flength = diap.filter((key) => sliders[2].value <= key.flength / 1 && key.flength / 1 <= sliders[3].value);
+				this.renderCardsD(flength)
+
+
+			})
+
+		});
+
+
+	}
+
+
+
+
 	filter(e) {
+
+
+
 
 		/* Фильтры по кнопкам вида цветов */
 
@@ -273,32 +596,6 @@ class Render {
 				return whiteYellowArr
 			})
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1369,7 +1666,6 @@ class Render {
 
 
 
-
 		else if (fbut.classList.contains("active")) {
 
 			this.renderCards(onlyFlowers)
@@ -1384,6 +1680,9 @@ class Render {
 
 			this.renderCards(onlyCarts)
 		}
+
+
+
 
 
 

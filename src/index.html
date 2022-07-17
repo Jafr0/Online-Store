@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="style.css">
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,200&display=swap"
 		rel="stylesheet">
@@ -52,12 +53,40 @@
 
 			</div>
 			<div class="diapozon">
+				<span>Количество в маганизне:</span>
+				<div class="kol">
+					<div class="stepleft">0</div>
+					<div class="polzun">
+						<input type="range" min="0" step="1" max="15" value="0">
+						<input type="range" min="0" step="1" max="15" value="15">
+					</div>
+					<div class="stepright">15</div>
+				</div>
+
+				<span>Размер цветка:</span>
+				<div class="kol1">
+					<div class="stepleft1">10</div>
+					<div class="polzun1">
+						<input type="range" min="10" step="5" max="45" value="10">
+						<input type="range" min="0" step="5" max="45" value="45">
+					</div>
+					<div class="stepright1">45</div>
+				</div>
+
 
 			</div>
+
+
+
 			<div class="sort">
 				<div class="search-container">
-					<input type="search" id="input" placeholder="Search..."><i id="search" class="fas fa-search"></i>
+					<input type="search" id="search" placeholder="Search..."><i id="search" class="fas fa-search"></i>
 				</div>
+				<button class="sortab">Сортировка А-Я</button>
+				<button class="sortba">Сортировка Я-А</button>
+				<button class="sort12">Сортировка 1-10</button>
+				<button class="sort21">Сортировка 10-1</button>
+				<button class="sbros">Сброс фильтров</button>
 			</div>
 
 	</section>
@@ -75,16 +104,23 @@
 			</div>
 		</div>
 
-
 	</section>
 
-	<footer class="footer">
-		<div class="footer-text">Отзывы клиентов</div>
+	<footer>
+		<a target="_blank" href="https://github.com/Jafr0" class="github__logo">
+			<img src="./assets/image/25231.png" alt="Logo My GitHub link">
+			<div class="textlogo">My GitHub</div>
+		</a>
+		<span>2022</span>
+		<a target="_blank" href="https://rs.school/js" class="rsschool__logo">
+			<img src="./assets/image/rs_school_js.svg" alt="Logo RS SCHOOL">
+		</a>
 
 	</footer>
 
 
 	<script src="index.js" type="module"></script>
+
 </body>
 
 </html>

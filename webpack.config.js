@@ -6,42 +6,42 @@ const ESlintPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const baseConfig = {
-	entry: path.resolve(__dirname, './src/index.js'), ///////////
-	mode: 'development',
-	module: {
-		rules: [
-			{
-				test: /\.css$/i,
-				use: ['style-loader', 'css-loader'],
-			},
-			{
-				test: /\.ts?$/i,
-				use: 'ts-loader',
-				exclude: /node_modules/,
-			},
-		],
-	},
-	resolve: {
-		extensions: ['.js', '.ts'],
-	},
-	output: {
-		filename: 'index.js',
-		path: path.resolve(__dirname, './dist'),
-	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, './src/index.html'),
-			filename: 'index.html',
-		}),
-		new CleanWebpackPlugin(),
-		new ESlintPlugin({ extensions: ['ts'] }),
-		new CopyWebpackPlugin({ patterns: [{ from: './src/assets/', to: './assets/' }] }),
-	],
+    entry: path.resolve(__dirname, './src/index.js'), ///////////
+    mode: 'development',
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.ts?$/i,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.js', '.ts'],
+    },
+    output: {
+        filename: 'index.js',
+        path: path.resolve(__dirname, './dist'),
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/index.html'),
+            filename: 'index.html',
+        }),
+        new CleanWebpackPlugin(),
+        new ESlintPlugin({ extensions: ['ts'] }),
+        new CopyWebpackPlugin({ patterns: [{ from: './src/assets/', to: './assets/' }] }),
+    ],
 };
 
 module.exports = ({ mode }) => {
-	const isProductionMode = mode === 'prod';
-	const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
+    const isProductionMode = mode === 'prod';
+    const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
 
-	return merge(baseConfig, envConfig);
+    return merge(baseConfig, envConfig);
 };
